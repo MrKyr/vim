@@ -77,7 +77,6 @@ wait
 ) &
 (
 set_group syntax
-package https://github.com/ap/vim-css-color.git &
 package https://github.com/morhetz/gruvbox.git &
 wait
 ) &
@@ -87,11 +86,6 @@ package https://github.com/tpope/vim-fugitive.git &
 package https://github.com/ledger/vim-ledger.git &
 package https://github.com/justmao945/vim-clang.git &
 package https://github.com/tpope/vim-commentary.git &
-wait
-) &
-(
-set_group Mr.Kyr
-package https://github.com/MrKyr/vim.git &
 wait
 ) &
 wait
