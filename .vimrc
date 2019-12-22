@@ -241,12 +241,12 @@ endfunction
 
 if has("autocmd")
   augroup templates
-    " autocmd BufNewFile *.sh 0r ~/.vim/pack/kyr/start/kyr/templates/skeleton.sh
-    autocmd BufNewFile *.sh call BashTemplate("~/.vim/pack/kyr/start/kyr/templates/skeleton.sh")
-    autocmd BufNewFile *.markdown call JekyllPost("~/.vim/pack/kyr/start/kyr/templates/skeleton.markdown")
-    autocmd BufNewFile *.md,*.markdown call DonkeyTravel("~/.vim/pack/kyr/start/kyr/templates/irene.markdown")
-    " autocmd BufNewFile *.md,*.markdown call DonkeyTravelPage("~/.vim/pack/kyr/start/kyr/templates/irene-page.markdown")
-    autocmd BufNewFile *.c,*.cpp,*.h call AddTemplate("~/.vim/pack/kyr/start/kyr/templates/skeleton.cpp")
+    " autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    autocmd BufNewFile *.sh call BashTemplate("~/.vim/templates/skeleton.sh")
+    autocmd BufNewFile *.markdown call JekyllPost("~/.vim/templates/skeleton.markdown")
+    autocmd BufNewFile *.md,*.markdown call DonkeyTravel("~/.vim/templates/irene.markdown")
+    " autocmd BufNewFile *.md,*.markdown call DonkeyTravelPage("~/.vim/templates/irene-page.markdown")
+    autocmd BufNewFile *.c,*.cpp,*.h call AddTemplate("~/.vim/templates/skeleton.cpp")
   augroup END
 endif
 
