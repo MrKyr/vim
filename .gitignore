@@ -1,0 +1,8 @@
+# Ignore everything
+*
+# But not these files
+!.gitignore
+!dot.vimrc
+!dot.vim/pack/install.sh
+!**/instal.ssh
+
