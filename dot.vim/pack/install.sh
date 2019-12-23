@@ -78,7 +78,6 @@ wait
 (
 set_group syntax
 package https://github.com/morhetz/gruvbox.git &
-package https://github.com/sonph/onehalf.git &
 wait
 ) &
 (
