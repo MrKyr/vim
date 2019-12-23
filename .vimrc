@@ -282,3 +282,12 @@ endfunction
 command LedgerSort call LedgerSort()
 " Autocompletion
 au FileType ledger imap <silent> : :<c-x><c-o>
+
+
+"*****************************************************************************************************
+" Notetaking grep example
+" use: `\[ text to search` or type `:Ngrep text to search`
+"*****************************************************************************************************
+command! -nargs=1 Ngrep vimgrep "<args>" ~/src/git/jekyll/Jekyll-Paper/**/*.md
+nnoremap <leader>[ :Ngrep 
+
