@@ -1,10 +1,10 @@
 # Ledger <http://ledger-cli.org/>
 snippet tt
 	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} ${5:payee}
-		Expenses:${6:Checking}    ${7:0,00} €
-		Assets:${8:Checking}
+		Expenses${6::}    ${7:0,00} €
+		${8:Account}
 		
-	$0
+	${0:tt}
 
 snippet ;; "ledger box"
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
