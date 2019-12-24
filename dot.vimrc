@@ -61,13 +61,21 @@ set makeprg=jekyll\ build
 " Now type :make to build the site
 
 
-" Restore folded code and splits
-augroup AutoSaveFolds
-  autocmd!
-  autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
-  autocmd BufWinEnter ?* silent! loadview
-augroup end
-set viewoptions=folds,cursor
+" Restore folds
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+"   autocmd BufWinEnter ?* silent! loadview
+" augroup end
+" set viewoptions=folds,cursor
+
+" Restore folds NEW
+augroup remember_folds
+    autocmd!
+    autocmd BufWinLeave ?* mkview | filetype detect
+    autocmd BufWinEnter ?* silent loadview | filetype detect
+augroup END
+
 " Restore size of splits
 set sessionoptions=folds,winsize,resize
 " Open new split panes to right and bottom, which feels more natural than Vim’s default:
@@ -80,9 +88,8 @@ set relativenumber
 
 " Tabs and indetnt
 set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=4 shiftwidth=4 expandtab
+" set softtabstop=4 tabstop=8 shiftwidth=4
 
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 
@@ -126,7 +133,7 @@ let g:vimwiki_list = [
 let g:vimwiki_global_ext = 0
 
 " Un-vimwiki
-nnoremap <Leader>' :e ~/src/git/jekyll/Jekyll-Paper/index.md<cr>
+nnoremap <Leader>' :e ~/src/git/jekyll/Jekyll-Paper/index.md<CR>
 
 " Use markdown syntax highlighting instead vimwiki's
 " autocmd FileType vimwiki set ft=markdown
@@ -280,8 +287,13 @@ function LedgerSort()
     :%LedgerAlign
 endfunction
 command LedgerSort call LedgerSort()
+
 " Autocompletion
 au FileType ledger imap <silent> : :<c-x><c-o>
+
+" Folding method
+au FileType ledger set fdm=syntax
+" ; vim: fdm=syntax
 
 
 "*****************************************************************************************************
