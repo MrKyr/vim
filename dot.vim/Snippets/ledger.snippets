@@ -1,13 +1,51 @@
 # Ledger <http://ledger-cli.org/>
 snippet tt
 	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} ${5:payee}
-		Expenses${6::}    ${7:0,00} €
-		${8:Account}
-		
-	${0:tt}
+		; ${6:}
+		Expenses${7::}    ${8:0,00} €
+		${9:Account}
+
+	$0
+
+# transfer money between accounts
+snippet tr
+	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} TransferMoney
+		; ${5:}
+		Assets${6::}    ${7:0,00} €
+		Assets${8::}
+
+	$0
+
+# for credit card
+snippet cc
+	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} CreditCard
+		; Payment ${5:}
+		Liabilities:Bank:WINBANK:CreditCard     ${6:0,00} €
+		Assets${7::}
+
+	$0
+
+# for income
+snippet ii
+	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} Income
+		; ${5:}
+		Income${6::}    -${7:0,00} €
+		Assets${8::}
+
+	$0
+
+# for balance
+snippet bb
+	${1:`strftime("%Y")`}/${2:`strftime("%m")`}/${3:`strftime("%d")`} ${4:*} Balancing
+		; Manual balancing ${5:}
+		Assets${6::}    = ${7:0,00} €
+		Expenses                 ; this line can be anything ex. Equity or Expenses:Unkown etc.
+
+	$0
 
 snippet ;; "ledger box"
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; * ${1:January 2019}
+	;; * ${1:`strftime("%B")`} ${2:`strftime("%Y")`}
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 	$0
