@@ -170,7 +170,7 @@ noremap <Leader>y "*yy
 noremap <Leader>p "*p
 
 " Set `.php` files as `html` but with color and indend like php
-au BufEnter,BufNew *.php :set filetype=html syn=php
+" au BufEnter,BufNew *.php :set filetype=html syn=php
 
 nnoremap <leader>pp :set ft=php<cr>
 nnoremap <leader>hh :set ft=html syn=php<cr>
@@ -268,7 +268,9 @@ endfunction
 nnoremap <Leader>r :call ReloadBrowser()<CR>
 
 " markdown to pdf
-nnoremap <leader>rr :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spool/%.pdf
+nnoremap <leader>rr :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/%.pdf
+
+command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/git/invoice_md/css/invoice.css -o ~/Spools/%.pdf"
 
 " for vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
