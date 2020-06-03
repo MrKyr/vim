@@ -62,19 +62,19 @@ set makeprg=jekyll\ build
 
 
 " Restore folds
-" augroup AutoSaveFolds
-"   autocmd!
-"   autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
-"   autocmd BufWinEnter ?* silent! loadview
-" augroup end
-" set viewoptions=folds,cursor
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+  autocmd BufWinEnter ?* silent! loadview
+augroup end
+set viewoptions=folds,cursor
 
 " Restore folds NEW
-augroup remember_folds
-    autocmd!
-    autocmd BufWinLeave ?* mkview | filetype detect
-    autocmd BufWinEnter ?* silent loadview | filetype detect
-augroup END
+" augroup remember_folds
+"     autocmd!
+"     autocmd BufWinLeave ?* mkview | filetype detect
+"     autocmd BufWinEnter ?* silent loadview | filetype detect
+" augroup END
 
 " Restore size of splits
 set sessionoptions=folds,winsize,resize
@@ -91,7 +91,7 @@ set smartindent
 set tabstop=4 shiftwidth=4 expandtab
 " set softtabstop=4 tabstop=8 shiftwidth=4
 
-autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType html,c,cpp setlocal ts=2 sts=2 sw=2
 
 inoremap {<cr> {<cr>}<c-o><s-o> 
 inoremap [<cr> [<cr>]<c-o><s-o> 
@@ -185,8 +185,10 @@ set linebreak
 nnoremap <leader>gl :silent! Glog<CR> :redraw!<CR> :copen<CR>
 
 " for csv plugin in ~/.vim/ftplugin/csv.vim
-au! BufNewFile,BufRead *.csv setf csv
-let g:csv_delimiter = ";"
+" au! BufNewFile,BufRead *.csv setf csv
+" let g:csv_delimiter = ";"
+au! BufNewFile,BufRead *.dat,*.csv setf csv
+let g:csv_delimiter = "\t"
 
 " Sort selected column in visual block
 vnoremap <leader>s :sort /\ze\%V/<CR>
@@ -254,6 +256,7 @@ if has("autocmd")
     autocmd BufNewFile *.md,*.markdown call DonkeyTravel("~/.vim/templates/irene.markdown")
     " autocmd BufNewFile *.md,*.markdown call DonkeyTravelPage("~/.vim/templates/irene-page.markdown")
     autocmd BufNewFile *.c,*.cpp,*.h call AddTemplate("~/.vim/templates/skeleton.cpp")
+    autocmd BufNewFile *.py call AddTemplate("~/.vim/templates/skeleton.py")
   augroup END
 endif
 
@@ -305,3 +308,20 @@ au FileType ledger set fdm=syntax
 command! -nargs=1 Ngrep vimgrep "<args>" ~/src/git/jekyll/Jekyll-Paper/**/*.md
 nnoremap <leader>[ :Ngrep 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Python Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for syntaxhighlighting download from:
+" https://raw.githubusercontent.com/hdima/python-syntax/master/syntax/python.vim
+" and put in ~/.vim/syntax
+" let python_highlight_all = 1
+
+" Python settings
+au BufNewFile,BufRead *.py
+\ set tabstop=4
+\  | set softtabstop=4
+\  | set shiftwidth=4
+\  | set textwidth=79
+\  | set expandtab
+\  | set autoindent
+\  | set fileformat=unix
