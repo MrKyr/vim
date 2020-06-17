@@ -325,3 +325,13 @@ au BufNewFile,BufRead *.py
 \  | set expandtab
 \  | set autoindent
 \  | set fileformat=unix
+
+function Xwax(deck)
+    :execute ":!client.py load " . a:deck . " \"$(find ~/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f2)*\")\""
+    :execute ":!client.py status " . a:deck
+endfunction
+nnoremap <F1> :call Xwax(1)<CR><CR>
+nnoremap <F2> :execute ":!client.py recue 1"<CR><CR>
+nnoremap <F5> :call Xwax(2)<CR><CR>
+nnoremap <F6> :execute ":!client.py recue 2"<CR><CR>
+
