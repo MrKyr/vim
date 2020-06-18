@@ -326,12 +326,20 @@ au BufNewFile,BufRead *.py
 \  | set autoindent
 \  | set fileformat=unix
 
+" XWAX
+" ex. of creating playlists
+" ~/libexec/xwax-scan ~/music/Old\ School\ Misc/ |sed 's/.*mp3\t//g' |nl -s' ' -n'ln' -w3 > Old\ School\ Misc.csv
+"
+set tabstop=50
 function Xwax(deck)
     :execute ":!client.py load " . a:deck . " \"$(find ~/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f2)*\")\""
-    :execute ":!client.py status " . a:deck
+    " :execute ":!client.py status " . a:deck
 endfunction
-nnoremap <F1> :call Xwax(1)<CR><CR>
-nnoremap <F2> :execute ":!client.py recue 1"<CR><CR>
-nnoremap <F5> :call Xwax(2)<CR><CR>
-nnoremap <F6> :execute ":!client.py recue 2"<CR><CR>
-
+" nnoremap <F1> :call Xwax(1)<CR><CR>
+" nnoremap <F2> :execute ":!client.py recue 1"<CR><CR>
+" nnoremap <F5> :call Xwax(2)<CR><CR>
+" nnoremap <F6> :execute ":!client.py recue 2"<CR><CR>
+nnoremap <Leader>1 :call Xwax(1)<CR><CR><CR>
+nnoremap <Leader>2 :execute ":!client.py recue 1"<CR><CR>
+nnoremap <Leader>5 :call Xwax(2)<CR><CR><CR>
+nnoremap <Leader>6 :execute ":!client.py recue 2"<CR><CR>
