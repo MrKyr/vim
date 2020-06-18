@@ -326,12 +326,26 @@ au BufNewFile,BufRead *.py
 \  | set autoindent
 \  | set fileformat=unix
 
+" XWAX
+" ex. of creating playlists
+" ~/libexec/xwax-scan ~/music/Old\ School\ Misc/ |sed 's/.*mp3\t//g' |nl -s' ' -n'ln' -w3 > Old\ School\ Misc.csv
+"
 function Xwax(deck)
-    :execute ":!client.py load " . a:deck . " \"$(find ~/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f2)*\")\""
-    :execute ":!client.py status " . a:deck
+    :execute ":!xwax-client localhost load " . a:deck . " \"$(find /mnt/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f1,2 |sed 's/\t/\*/g')*.mp3\")\""
 endfunction
-nnoremap <F1> :call Xwax(1)<CR><CR>
-nnoremap <F2> :execute ":!client.py recue 1"<CR><CR>
-nnoremap <F5> :call Xwax(2)<CR><CR>
-nnoremap <F6> :execute ":!client.py recue 2"<CR><CR>
 
+function XwaxC(deck)
+    :let conn = system("xwax-client localhost get_status " . a:deck . " |grep timecode_control |awk '{printf $2}'")
+    if conn == '1'
+        :execute ":!xwax-client localhost disconnect " . a:deck
+    else
+        :execute ":!xwax-client localhost reconnect " . a:deck
+    endif
+endfunction
+
+nnoremap <Leader>1 :call Xwax(0)<CR><CR>
+nnoremap <Leader>2 :execute ":!xwax-client localhost recue 0"<CR><CR>
+nnoremap <Leader>3 :call XwaxC(0)<CR><CR>
+nnoremap <Leader>5 :call Xwax(1)<CR><CR>
+nnoremap <Leader>6 :execute ":!xwax-client localhost recue 1"<CR><CR>
+nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
