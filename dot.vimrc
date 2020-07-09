@@ -1,6 +1,9 @@
 " first thing is entering vim mode, not plain vi
 set nocompatible
 
+" How can I make the backspace key delete characters as usual?
+set backspace=indent,eol,start
+
 " set default encoding
 set fileencodings=utf-8
 set encoding=utf-8
