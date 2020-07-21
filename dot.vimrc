@@ -130,8 +130,8 @@ set smartcase
 " vimwiki/vimwiki
 let g:vimwiki_list = [
                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
+                       \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'}]
+                       " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_pages', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 
