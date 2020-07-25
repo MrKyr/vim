@@ -94,7 +94,7 @@ set smartindent
 set tabstop=4 shiftwidth=4 expandtab
 " set softtabstop=4 tabstop=8 shiftwidth=4
 
-autocmd FileType html,c,cpp setlocal ts=2 sts=2 sw=2
+autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
 
 inoremap {<cr> {<cr>}<c-o><s-o> 
 inoremap [<cr> [<cr>]<c-o><s-o> 
