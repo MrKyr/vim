@@ -276,7 +276,7 @@ nnoremap <Leader>r :call ReloadBrowser()<CR>
 " markdown to pdf
 nnoremap <leader>rr :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/%.pdf
 
-command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/git/invoice_md/css/invoice.css -o ~/Spools/%.pdf"
+command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/invoice_md/css/invoice.css -o ~/Spools/%.pdf"
 
 " for vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
