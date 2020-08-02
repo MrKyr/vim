@@ -334,7 +334,7 @@ au BufNewFile,BufRead *.py
 " ~/libexec/xwax-scan ~/music/Old\ School\ Misc/ |sed 's/.*mp3\t//g' |nl -s' ' -n'ln' -w3 > Old\ School\ Misc.csv
 "
 function Xwax(deck)
-    :execute ":!xwax-client localhost load " . a:deck . " \"$(find /mnt/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f1,2 |sed 's/\t/\*/g')*.mp3\")\""
+    :execute ":!xwax-client localhost load " . a:deck . " \"$(find ~/music -name \"*$(sed -n " . line('.') . "p \"%\" | cut -f1,2 |sed 's/\t/\*/g')*.mp3\")\""
 endfunction
 
 function XwaxC(deck)
