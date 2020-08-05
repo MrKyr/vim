@@ -352,3 +352,6 @@ nnoremap <Leader>3 :call XwaxC(0)<CR><CR>
 nnoremap <Leader>5 :call Xwax(1)<CR><CR>
 nnoremap <Leader>6 :execute ":!xwax-client localhost recue 1"<CR><CR>
 nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
+
+" Display a visual line at 80th column
+set colorcolumn=80
