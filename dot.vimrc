@@ -63,7 +63,6 @@ let g:netrw_liststyle=3
 set makeprg=jekyll\ build
 " Now type :make to build the site
 
-
 " Restore folds
 augroup AutoSaveFolds
   autocmd!
@@ -130,7 +129,8 @@ set smartcase
 " vimwiki/vimwiki
 let g:vimwiki_list = [
                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'}]
+                       \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
+                       \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_pages', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
@@ -276,7 +276,7 @@ nnoremap <Leader>r :call ReloadBrowser()<CR>
 " markdown to pdf
 nnoremap <leader>rr :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/%.pdf
 
-command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/invoice_md/css/invoice.css -o ~/Spools/%.pdf"
+command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/invoice_md/css/invoice.css -o ~/Spools/'%:t'.pdf"
 
 " for vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
@@ -355,3 +355,5 @@ nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
 
 " Display a visual line at 80th column
 set colorcolumn=80
+
+nnoremap <leader>yy :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5 --css ~/src/css/58.css -o ~/Spools/1.pdf
