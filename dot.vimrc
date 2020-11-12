@@ -324,7 +324,7 @@ au BufNewFile,BufRead *.py
 \ set tabstop=4
 \  | set softtabstop=4
 \  | set shiftwidth=4
-\  | set textwidth=79
+" \  | set textwidth=79
 \  | set expandtab
 \  | set autoindent
 \  | set fileformat=unix
@@ -357,3 +357,19 @@ nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
 set colorcolumn=80
 
 nnoremap <leader>yy :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5 --css ~/src/css/58.css -o ~/Spools/1.pdf
+
+" VIM Disable Automatic Newline At End Of File
+set nofixendofline
+
+" markdownpreview.neovim plugin
+" FIX:
+" [vim-node-rpc] pre build and node not found!
+" Pre build and node is not found
+" run :call mkdp#util#install()
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+
