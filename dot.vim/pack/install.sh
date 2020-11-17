@@ -80,6 +80,10 @@ package https://github.com/vim-airline/vim-airline-themes.git &
 wait
 ) &
 (
+set_group development
+package https://github.com/vim-scripts/indentpython.git &
+) &
+(
 set_group syntax
 package https://github.com/morhetz/gruvbox.git &
 wait
