@@ -13,11 +13,20 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+" Display a visual line at 80th column
+set colorcolumn=80
+
+" Visual wrapping
+set linebreak
+
+" for macVIm
+set guifont=Monaco:h14
 " Theme
 color gruvbox
 set background=dark
-" for macVIm
-set guifont=Monaco:h14
+
+" colorscheme github
+
 
 " Vim Airline plugin (the status bar)
 let g:airline#extensions#keymap#enabled = 0
@@ -25,7 +34,8 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 " let g:airline_theme='powerlineish'
-let g:airline_theme='molokai'
+" let g:airline_theme='molokai'
+let g:airline_theme='github'
 
 " Leave it here don't move !!
 syntax on
@@ -63,6 +73,10 @@ let g:netrw_liststyle=3
 set makeprg=jekyll\ build
 " Now type :make to build the site
 
+" Run the bash script and the output in new buid in vims terminal
+" autocmd filetype sh nnoremap <F4> :terminal sh % <CR>
+autocmd filetype sh nnoremap <Leader>' :terminal sh % <CR>
+
 " Restore folds
 augroup AutoSaveFolds
   autocmd!
@@ -94,6 +108,9 @@ set tabstop=4 shiftwidth=4 expandtab
 " set softtabstop=4 tabstop=8 shiftwidth=4
 
 autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
+
+" set line wrap and visual line to fit the printer POS58
+autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
 
 inoremap {<cr> {<cr>}<c-o><s-o> 
 inoremap [<cr> [<cr>]<c-o><s-o> 
@@ -129,6 +146,7 @@ set smartcase
 " vimwiki/vimwiki
 let g:vimwiki_list = [
                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
+                       \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
@@ -136,7 +154,7 @@ let g:vimwiki_list = [
 let g:vimwiki_global_ext = 0
 
 " Un-vimwiki
-nnoremap <Leader>' :e ~/src/git/jekyll/Jekyll-Paper/index.md<CR>
+" nnoremap <Leader>' :e ~/src/git/jekyll/Jekyll-Paper/index.md<CR>
 
 " Use markdown syntax highlighting instead vimwiki's
 " autocmd FileType vimwiki set ft=markdown
@@ -181,8 +199,6 @@ nnoremap <leader>hh :set ft=html syn=php<cr>
 " display always the status line
 set laststatus=2
 
-" Visual wrapping
-set linebreak
 
 " Fugitive Fix for :Glog
 nnoremap <leader>gl :silent! Glog<CR> :redraw!<CR> :copen<CR>
@@ -191,7 +207,7 @@ nnoremap <leader>gl :silent! Glog<CR> :redraw!<CR> :copen<CR>
 " au! BufNewFile,BufRead *.csv setf csv
 " let g:csv_delimiter = ";"
 au! BufNewFile,BufRead *.dat,*.csv setf csv
-let g:csv_delimiter = "\t"
+let g:csv_delimiter = ","
 
 " Sort selected column in visual block
 vnoremap <leader>s :sort /\ze\%V/<CR>
@@ -308,8 +324,8 @@ au FileType ledger set fdm=syntax
 " Notetaking grep example
 " use: `\[ text to search` or type `:Ngrep text to search`
 "*****************************************************************************************************
-command! -nargs=1 Ngrep vimgrep "<args>" ~/src/git/jekyll/Jekyll-Paper/**/*.md
-nnoremap <leader>[ :Ngrep 
+" command! -nargs=1 Ngrep vimgrep "<args>" ~/src/git/jekyll/Jekyll-Paper/**/*.md
+" nnoremap <leader>[ :Ngrep 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Python Settings
@@ -353,8 +369,6 @@ nnoremap <Leader>5 :call Xwax(1)<CR><CR>
 nnoremap <Leader>6 :execute ":!xwax-client localhost recue 1"<CR><CR>
 nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
 
-" Display a visual line at 80th column
-set colorcolumn=80
 
 nnoremap <leader>yy :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5 --css ~/src/css/58.css -o ~/Spools/1.pdf
 
