@@ -84,6 +84,11 @@ set_group development
 package https://github.com/vim-scripts/indentpython.git &
 ) &
 (
+set_group themes
+package https://github.com/cormacrelf/vim-colors-github.git &
+wait
+) &
+(
 set_group syntax
 package https://github.com/morhetz/gruvbox.git &
 wait
