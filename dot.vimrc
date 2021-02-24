@@ -34,14 +34,14 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 " let g:airline_theme='powerlineish'
-" let g:airline_theme='molokai'
-let g:airline_theme='github'
+let g:airline_theme='molokai'
+" let g:airline_theme='github'
 
 " Leave it here don't move !!
 syntax on
 
 " Highlight line
-set nocursorline " don't use highlight
+" set nocursorline " don't use highlight
 set cursorline
 set nocursorcolumn
 
@@ -49,7 +49,7 @@ set nocursorcolumn
 set visualbell t_vb=
 
 " Include headers*
-set path=./,/usr/local/Cellar/avr-gcc/8.2.0/avr/include,/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino
+set path=./,/usr/local/Cellar/avr-gcc/8.2.0/avr/include,/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino,/usr/local/Cellar/mariadb/10.5.8/include/mysql
 
 " Search down into subfolders
 " source: https://www.youtube.com/watch?v=XA2WjJbmmoM&feature=youtu.be
@@ -70,7 +70,7 @@ let g:netrw_liststyle=3
 
 " BUILD INTEGRATION
 " Build jekyll current site
-set makeprg=jekyll\ build
+" set makeprg=jekyll\ build
 " Now type :make to build the site
 
 " Run the bash script and the output in new buid in vims terminal
@@ -121,7 +121,7 @@ inoremap /*<cr> /*<cr>*/<c-o><s-o>
 set autoread
 
 " Searching highliting and clear with 'ctrl+l'
-set hlsearch      " highlight search terms
+" set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
@@ -387,3 +387,5 @@ let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
 
+" Bypass deprecation message for Snpmate
+let g:snipMate = { 'snippet_version' : 1 }

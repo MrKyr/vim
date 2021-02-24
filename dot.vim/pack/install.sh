@@ -91,6 +91,7 @@ wait
 (
 set_group syntax
 package https://github.com/morhetz/gruvbox.git &
+package https://github.com/mityu/vim-applescript.git &
 wait
 ) &
 (
