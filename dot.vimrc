@@ -182,7 +182,8 @@ inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " copy and paste and from system clipboard MAC
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard=unnamedplus
 "
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
@@ -386,6 +387,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
+let g:mkdp_browser = 'firefox'
 
 " Bypass deprecation message for Snpmate
 let g:snipMate = { 'snippet_version' : 1 }
