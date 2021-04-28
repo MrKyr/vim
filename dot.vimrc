@@ -181,9 +181,10 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
+" copy and paste and from system clipboard LINUX
+set clipboard=unnamed
 " copy and paste and from system clipboard MAC
-" set clipboard=unnamed
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 "
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
