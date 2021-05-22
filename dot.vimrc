@@ -14,7 +14,7 @@ if !has('gui_running')
 endif
 
 " Display a visual line at 80th column
-set colorcolumn=80
+set colorcolumn=81
 
 " Visual wrapping
 set linebreak
@@ -26,6 +26,11 @@ color gruvbox
 set background=dark
 
 " colorscheme github
+
+" Showing spaces at end of line as dots
+" Also tabs
+set listchars=tab:>~,nbsp:_,trail:.
+set list
 
 
 " Vim Airline plugin (the status bar)
@@ -112,6 +117,9 @@ autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
 " set line wrap and visual line to fit the printer POS58
 autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
 
+command PosRaw execute "w !lp -o raw"
+command Pos execute "w !lp"
+
 inoremap {<cr> {<cr>}<c-o><s-o> 
 inoremap [<cr> [<cr>]<c-o><s-o> 
 inoremap (<cr> (<cr>)<c-o><s-o>
@@ -181,8 +189,9 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
-" copy and paste and from system clipboard MAC
+" copy and paste and from system clipboard
 set clipboard=unnamed
+" set clipboard=unnamedplus
 "
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
