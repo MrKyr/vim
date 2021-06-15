@@ -20,10 +20,29 @@ set colorcolumn=81
 set linebreak
 
 " for macVIm
-set guifont=Monaco:h14
+" set guifont=Monaco:h14
 " Theme
 color gruvbox
 set background=dark
+let g:gruvbox_contrast_dark='hard'
+
+" colorscheme 256_noir
+
+" https://github.com/fcpg/vim-farout
+" colorscheme farout
+
+" https://github.com/camgunz/amber
+" set background=dark
+" colorscheme amber
+
+" colorscheme alduin
+
+
+" colorscheme distinguished
+
+
+" set background=dark
+" colorscheme paramount
 
 " colorscheme github
 
@@ -399,3 +418,16 @@ let g:mkdp_browser = 'firefox'
 
 " Bypass deprecation message for Snpmate
 let g:snipMate = { 'snippet_version' : 1 }
+
+" Open url under cursor by pressing ENTER
+function! OpenURLUnderCursor()
+    let s:uri = expand('<cWORD>')
+    let s:uri = substitute(s:uri, '?', '\\?', '')
+    let s:uri = shellescape(s:uri, 1)
+    if s:uri != ''
+        silent exec "!xdg-open '".s:uri."'"
+        :redraw!
+    endif
+endfunction
+nnoremap <enter> :call OpenURLUnderCursor()<CR>
+
