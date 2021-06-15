@@ -21,9 +21,56 @@ set linebreak
 
 " for macVIm
 set guifont=Monaco:h14
-" Theme
+
+" Themes
 color gruvbox
 set background=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gruvbox theme
+
+" https://github.com/andreasvc/vim-256noir
+" colorscheme 256_noir
+
+" colorscheme blackboard
+" colorscheme lucario
+
+" https://github.com/jaredgorski/fogbell.vim
+" colorscheme fogbell_lite
+
+
+" set background=dark
+" colorscheme paramount
+
+" set termguicolors
+" let g:monotone_color = [120, 100, 70] " Sets theme color to bright green
+" let g:monotone_secondary_hue_offset = 200 " Offset secondary colors by 200 degrees
+" colorscheme monotone
+
+" colorscheme meh
+
+
+" https://github.com/fxn/vim-monochrome
+" colorscheme monochrome
+
+" https://github.com/zaki/zazen
+" colorscheme zazen
+
+" https://github.com/bdd/.dotfiles/blob/main/dot.config/vim/colors/noclown.vim
+" colorscheme noclown
+
+
+" https://github.com/pgdouyon/vim-yin-yang
+" colorscheme yin
+
+
+
+" https://github.com/axvr/photon.vim
+" colorscheme photon
+
+" https://github.com/fcpg/vim-farout
+" colorscheme farout
+
+" colorscheme warlock
 
 " colorscheme github
 
@@ -174,8 +221,8 @@ filetype plugin indent on
 " Set spell checker
 set spelllang=el-en
 " Enable/Disable
-set spell " enable spell checker
-set nospell " disable spell checker 
+" set spell " enable spell checker
+" set nospell " disable spell checker 
 
 " enable UTF-8 Greek keymap permanently
 set keymap=greek_utf-8
