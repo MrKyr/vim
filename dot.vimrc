@@ -25,6 +25,7 @@ set linebreak
 color gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gruvbox theme
 
 " colorscheme 256_noir
 
