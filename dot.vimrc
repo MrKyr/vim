@@ -27,31 +27,10 @@ set background=dark
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gruvbox theme
 
-" colorscheme 256_noir
-
-" https://github.com/fcpg/vim-farout
-" colorscheme farout
-
-" https://github.com/camgunz/amber
-" set background=dark
-" colorscheme amber
-
-" colorscheme alduin
-
-
-" colorscheme distinguished
-
-
-" set background=dark
-" colorscheme paramount
-
-" colorscheme github
-
 " Showing spaces at end of line as dots
 " Also tabs
 set listchars=tab:>~,nbsp:_,trail:.
 set list
-
 
 " Vim Airline plugin (the status bar)
 let g:airline#extensions#keymap#enabled = 0
@@ -72,9 +51,6 @@ set nocursorcolumn
 
 " Disable bell
 set visualbell t_vb=
-
-" Include headers*
-set path=./,/usr/local/Cellar/avr-gcc/8.2.0/avr/include,/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino,/usr/local/Cellar/mariadb/10.5.8/include/mysql
 
 " Search down into subfolders
 " source: https://www.youtube.com/watch?v=XA2WjJbmmoM&feature=youtu.be
@@ -109,13 +85,6 @@ augroup AutoSaveFolds
   autocmd BufWinEnter ?* silent! loadview
 augroup end
 set viewoptions=folds,cursor
-
-" Restore folds NEW
-" augroup remember_folds
-"     autocmd!
-"     autocmd BufWinLeave ?* mkview | filetype detect
-"     autocmd BufWinEnter ?* silent loadview | filetype detect
-" augroup END
 
 " Restore size of splits
 set sessionoptions=folds,winsize,resize
@@ -177,15 +146,7 @@ let g:vimwiki_list = [
                        \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
-                       " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
-                       " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_pages', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
-
-" Un-vimwiki
-" nnoremap <Leader>' :e ~/src/git/jekyll/Jekyll-Paper/index.md<CR>
-
-" Use markdown syntax highlighting instead vimwiki's
-" autocmd FileType vimwiki set ft=markdown
 
 filetype plugin indent on
 
@@ -220,14 +181,11 @@ noremap <Leader>y "*yy
 noremap <Leader>p "*p
 
 " Set `.php` files as `html` but with color and indend like php
-" au BufEnter,BufNew *.php :set filetype=html syn=php
-
 nnoremap <leader>pp :set ft=php<cr>
 nnoremap <leader>hh :set ft=html syn=php<cr>
 
 " display always the status line
 set laststatus=2
-
 
 " Fugitive Fix for :Glog
 nnoremap <leader>gl :silent! Glog<CR> :redraw!<CR> :copen<CR>
@@ -308,68 +266,14 @@ if has("autocmd")
   augroup END
 endif
 
-" Reload Safari page on save for Irene
-" https://stackoverflow.com/questions/12733519/vim-make-chrome-refresh-anytime-i-write
-function! ReloadBrowser()
-    silent exe "!osascript -e 'tell app \"Safari\" to activate\<cr>
-                \tell app \"System events\"\<cr> keystroke \"r\" using command down\<cr>
-                \end tell'"
-    silent exe "!osascript -e 'tell app \"Iterm\" to activate'"
-endfunction
-nnoremap <Leader>r :call ReloadBrowser()<CR>
-
-" markdown to pdf
-nnoremap <leader>rr :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.pdf
-
-command Tim2pdf execute "!pandoc % --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/invoice_md/css/invoice.css -o ~/vimwiki/Invoices/'%:t'.pdf"
-
 " for vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
-
-" lEDGER ACCOUNTING
-" First install the plugin: https://github.com/ledger/vim-ledger
-" https://justyn.io/blog/automatically-sort-and-align-ledger-transactions-in-vim/
-filetype plugin indent on
-au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
-let g:ledger_maxwidth = 120
-let g:ledger_fold_blanks = 1
-let g:ledger_decimal_set = ','
-
-function LedgerSort()
-    :%! ledger -f - print --sort 'date, amount'
-    :%LedgerAlign
-endfunction
-command LedgerSort call LedgerSort()
-
-" Autocompletion
-au FileType ledger imap <silent> : :<c-x><c-o>
-
-" Folding method
-au FileType ledger set fdm=syntax
-" ; vim: fdm=syntax
-
-
-"*****************************************************************************************************
-" Notetaking grep example
-" use: `\[ text to search` or type `:Ngrep text to search`
-"*****************************************************************************************************
-" command! -nargs=1 Ngrep vimgrep "<args>" ~/src/git/jekyll/Jekyll-Paper/**/*.md
-" nnoremap <leader>[ :Ngrep 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Python Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" for syntaxhighlighting download from:
-" https://raw.githubusercontent.com/hdima/python-syntax/master/syntax/python.vim
-" and put in ~/.vim/syntax
-" let python_highlight_all = 1
 
 " Python settings
 au BufNewFile,BufRead *.py
 \ set tabstop=4
 \  | set softtabstop=4
 \  | set shiftwidth=4
-" \  | set textwidth=79
 \  | set expandtab
 \  | set autoindent
 \  | set fileformat=unix
@@ -398,16 +302,12 @@ nnoremap <Leader>5 :call Xwax(1)<CR><CR>
 nnoremap <Leader>6 :execute ":!xwax-client localhost recue 1"<CR><CR>
 nnoremap <Leader>7 :call XwaxC(1)<CR><CR>
 
-
-nnoremap <leader>yy :!pandoc % --metadata pagetitle="Corali Designs Co." -t html5 --css ~/src/css/58.css -o ~/Spools/1.pdf
-
 " VIM Disable Automatic Newline At End Of File
 set nofixendofline
 
 " markdownpreview.neovim plugin
 " FIX:
 " [vim-node-rpc] pre build and node not found!
-" Pre build and node is not found
 " run :call mkdp#util#install()
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
@@ -426,9 +326,8 @@ function! OpenURLUnderCursor()
     let s:uri = substitute(s:uri, '?', '\\?', '')
     let s:uri = shellescape(s:uri, 1)
     if s:uri != ''
-        silent exec "!xdg-open '".s:uri."'"
+        silent exec "!firefox -new-tab '".s:uri."'"
         :redraw!
     endif
 endfunction
-nnoremap <enter> :call OpenURLUnderCursor()<CR>
-
+nnoremap <Leader><enter> :call OpenURLUnderCursor()<CR>
