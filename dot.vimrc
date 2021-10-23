@@ -164,8 +164,8 @@ autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
 " set line wrap and visual line to fit the printer POS58
 autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
 
-command PosRaw execute "w !lp -o raw"
-command Pos execute "w !lp"
+command! -range=% PosRaw :<line1>,<line2> w ! lp -o raw
+command! -range=% Pos :<line1>,<line2> w !lp
 
 inoremap {<cr> {<cr>}<c-o><s-o> 
 inoremap [<cr> [<cr>]<c-o><s-o> 
