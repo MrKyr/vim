@@ -76,7 +76,8 @@ let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gr
 
 " Showing spaces at end of line as dots
 " Also tabs
-set listchars=tab:>~,nbsp:_,trail:.
+" set listchars=tab:>~,nbsp:_,trail:.
+set listchars=tab:\|\-,nbsp:_,trail:.
 set list
 
 
@@ -445,3 +446,14 @@ let g:mkdp_open_ip = ''
 
 " Bypass deprecation message for Snpmate
 let g:snipMate = { 'snippet_version' : 1 }
+
+" LARAVEL (requires vim-blade plugin)
+" blade files syntax highlighting
+" Define some single Blade directives. This variable is used for highlighting only.
+let g:blade_custom_directives = ['datetime', 'javascript']
+
+" Define pairs of Blade directives. This variable is used for highlighting and indentation.
+let g:blade_custom_directives_pairs = {
+      \   'markdown': 'endmarkdown',
+      \   'cache': 'endcache',
+      \ }
