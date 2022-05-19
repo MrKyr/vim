@@ -145,6 +145,7 @@ let g:vimwiki_list = [
                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
+                       \{'path': '~/vimwiki/Cooking', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 
