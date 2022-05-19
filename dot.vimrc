@@ -156,11 +156,15 @@ set number
 set relativenumber
 
 " Tabs and indetnt
-set smartindent
-set tabstop=4 shiftwidth=4 expandtab
+" set smartindent
+" set tabstop=4 shiftwidth=4 expandtab
 " set softtabstop=4 tabstop=8 shiftwidth=4
 
-autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
+autocmd BufRead,BufNewFile *.html,*.php,*.css setlocal ts=2 sts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.c,*.cpp setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType html,php,css setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType c,cpp setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType sh setlocal ts=4 sts=4 sw=4 expandtab
 
 " set line wrap and visual line to fit the printer POS58
 autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
@@ -204,6 +208,7 @@ let g:vimwiki_list = [
                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
+                       \{'path': '~/vimwiki/Cooking', 'syntax': 'markdown', 'ext': '.md'},
                        \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_posts', 'syntax': 'markdown', 'ext': '.md'}]
                        " \{'path': '~/src/git/jekyll/donkeytravel.github.io/_pages', 'syntax': 'markdown', 'ext': '.md'}]
