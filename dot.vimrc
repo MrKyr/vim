@@ -343,3 +343,11 @@ let g:blade_custom_directives_pairs = {
       \   'markdown': 'endmarkdown',
       \   'cache': 'endcache',
       \ }
+
+" Create PDF
+nnoremap <leader>rr :!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.pdf
+
+" Create HTML with auto TOC
+nnoremap <leader>rh :!pandoc -s --toc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.html
+
+command Tim2pdf execute "!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/css/invoice.css -o ~/Spools/'%:t'.pdf"
