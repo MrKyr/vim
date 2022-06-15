@@ -92,7 +92,8 @@ wait
 set_group syntax
 package https://github.com/morhetz/gruvbox.git &
 package https://github.com/mityu/vim-applescript.git &
-package git://github.com/jwalton512/vim-blade.git &
+package https://github.com/jwalton512/vim-blade.git &
+package https://github.com/mzlogin/vim-markdown-toc.git &
 wait
 ) &
 (
