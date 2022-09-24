@@ -344,6 +344,8 @@ let g:blade_custom_directives_pairs = {
       \   'cache': 'endcache',
       \ }
 
+nnoremap <leader>d :r !date '+\%Y-\%m-\%d \%a  \%H:\%M'
+
 " Create PDF
 nnoremap <leader>rr :!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.pdf
 
