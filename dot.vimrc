@@ -24,6 +24,7 @@ set linebreak
 
 " for macVIm
 " set guifont=Monaco:h14
+
 " Theme
 color gruvbox
 set background=dark
@@ -40,15 +41,12 @@ let g:airline#extensions#keymap#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
-" let g:airline_theme='powerlineish'
 let g:airline_theme='molokai'
-" let g:airline_theme='github'
 
 " Leave it here don't move !!
 syntax on
 
 " Highlight line
-" set nocursorline " don't use highlight
 set cursorline
 set nocursorcolumn
 
@@ -78,7 +76,6 @@ let g:netrw_liststyle=3
 " Now type :make to build the site
 
 " Run the bash script and the output in new buid in vims terminal
-" autocmd filetype sh nnoremap <F4> :terminal sh % <CR>
 autocmd filetype sh nnoremap <Leader>' :terminal sh % <CR>
 
 " Restore folds
@@ -102,18 +99,19 @@ set relativenumber
 " Tabs and indetnt
 set smartindent
 set tabstop=4 shiftwidth=4 expandtab
-" set softtabstop=4 tabstop=8 shiftwidth=4
-
 autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
 
 " set line wrap and visual line to fit the printer POS58
 autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
 
+" Custom commands to print to Natum POS58 bleutooth printer
 command! -range=% PosRaw :<line1>,<line2> w ! lp -o raw
 command! -range=% Pos :<line1>,<line2> w !lp
 
-inoremap {<cr> {<cr>}<c-o><s-o> 
-inoremap [<cr> [<cr>]<c-o><s-o> 
+" Automatic pair {} [] () /**/ 
+inoremap {<cr> {<cr>}<c-o><s-o>
+" inoremap [<cr> [<cr>]<c-o><s-o>
+inoremap [ []<ESC>i
 inoremap (<cr> (<cr>)<c-o><s-o>
 inoremap /*<cr> /*<cr>*/<c-o><s-o>
 
@@ -121,8 +119,8 @@ inoremap /*<cr> /*<cr>*/<c-o><s-o>
 set autoread
 
 " Searching highliting and clear with 'ctrl+l'
-" set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+" set hlsearch      " highlight search terms DISSABLED SLOW DOWN
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
@@ -176,8 +174,6 @@ inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " copy and paste and from system clipboard
 set clipboard=unnamed
-" set clipboard=unnamedplus
-"
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
 noremap <Leader>y "*yy
@@ -191,8 +187,8 @@ nnoremap <leader>hh :set ft=html syn=php<cr>
 " display always the status line
 set laststatus=2
 
-" Fugitive Fix for :Glog
-nnoremap <leader>gl :silent! Glog<CR> :redraw!<CR> :copen<CR>
+" Fugitive Fix for :GcLog
+nnoremap <leader>gl :silent! GcLog<CR> :redraw!<CR> :copen<CR>
 
 " for csv plugin in ~/.vim/ftplugin/csv.vim
 " au! BufNewFile,BufRead *.csv setf csv
@@ -321,7 +317,7 @@ let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
 let g:mkdp_browser = 'firefox'
 
-" Bypass deprecation message for Snpmate
+" Bypass deprecation message for Snipmate
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Open url under cursor by pressing ENTER
@@ -347,7 +343,8 @@ let g:blade_custom_directives_pairs = {
       \   'cache': 'endcache',
       \ }
 
-nnoremap <leader>d :r !date '+\%Y-\%m-\%d \%a  \%H:\%M'
+" Insert current date
+nnoremap <leader>d :r !date '+\%Y-\%m-\%d \%a  \%H:\%M'<cr>
 
 " Create PDF
 nnoremap <leader>rr :!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.pdf
