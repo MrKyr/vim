@@ -13,6 +13,9 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+" vim randomly breaks syntax highlighting FIX
+autocmd BufEnter * syntax sync fromstart
+
 " Display a visual line at 80th column
 set colorcolumn=81
 
