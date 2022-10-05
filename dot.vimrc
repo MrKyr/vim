@@ -2,7 +2,8 @@
 set nocompatible
 
 " How can I make the backspace key delete characters as usual?
-set backspace=indent,eol,start
+" Disabled for linux
+" set backspace=indent,eol,start
 
 " set default encoding
 set fileencodings=utf-8
@@ -14,7 +15,9 @@ if !has('gui_running')
 endif
 
 " vim randomly breaks syntax highlighting FIX
-autocmd BufEnter * syntax sync fromstart
+" autocmd BufEnter * syntax sync fromstart " DOES NOT WORK:
+" Manual Refresh Syntax Color With: <Ctrl+l>
+nnoremap <silent> <C-l> :syntax sync fromstart<CR>
 
 " Display a visual line at 80th column
 set colorcolumn=81
@@ -122,7 +125,7 @@ set autoread
 set incsearch     " show search matches as you type
 " set hlsearch      " highlight search terms DISSABLED SLOW DOWN
 " <Ctrl-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+" nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " It hides buffers instead of closing them. This means that you can have unwritten 
 " changes to a file and open a new file using :e, without being forced to write 
