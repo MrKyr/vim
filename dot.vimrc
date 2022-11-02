@@ -318,7 +318,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'firefox'
+let g:mkdp_browser = 'librewolf'
 
 " Bypass deprecation message for Snipmate
 let g:snipMate = { 'snippet_version' : 1 }
