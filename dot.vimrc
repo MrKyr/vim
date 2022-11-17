@@ -158,10 +158,10 @@ filetype plugin indent on
 " Using Vim with the Greek language & Spell Checker
 " https://stackoverflow.com/questions/3776728/using-vim-with-the-greek-language
 " Set spell checker
-set spelllang=el-en
+set spelllang=en,el
 " Enable/Disable
-set spell " enable spell checker
-set nospell " disable spell checker 
+" set spell " enable spell checker
+" set nospell " disable spell checker 
 
 " enable UTF-8 Greek keymap permanently
 set keymap=greek_utf-8
