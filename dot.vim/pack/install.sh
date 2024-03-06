@@ -86,6 +86,7 @@ package https://github.com/vim-scripts/indentpython.git &
 (
 set_group themes
 package https://github.com/cormacrelf/vim-colors-github.git &
+package https://github.com/NLKNguyen/papercolor-theme.git &
 wait
 ) &
 (
@@ -95,6 +96,7 @@ package https://github.com/mityu/vim-applescript.git &
 package https://github.com/jwalton512/vim-blade.git &
 package https://github.com/mzlogin/vim-markdown-toc.git &
 package https://github.com/sirtaj/vim-openscad.git &
+package https://github.com/zaid/vim-rec.git &
 wait
 ) &
 (

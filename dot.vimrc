@@ -1,6 +1,11 @@
 " first thing is entering vim mode, not plain vi
 set nocompatible
 
+" Quit vim also with capital q Q
+:command Q q
+" Save also with capital w W
+:command W w
+
 " How can I make the backspace key delete characters as usual?
 " Disabled for linux
 " set backspace=indent,eol,start
@@ -33,6 +38,14 @@ color gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gruvbox theme
+
+" Theme light
+" color PaperColor
+" set background=light
+
+" Change highlight for csv files
+autocmd BufEnter *.csv highlight Keyword term=NONE cterm=NONE ctermfg=yellow
+" autocmd BufEnter *.csv highlight Keyword term=NONE cterm=NONE ctermfg=black ctermbg=yellow
 
 " Showing spaces at end of line as dots
 " Also tabs
@@ -102,10 +115,10 @@ set relativenumber
 " Tabs and indetnt
 set smartindent
 set tabstop=4 shiftwidth=4 expandtab
-autocmd FileType html,c,cpp setlocal ts=4 sts=4 sw=4
+autocmd FileType c,cpp setlocal ts=4 sts=4 sw=4
 
 " set line wrap and visual line to fit the printer POS58
-autocmd BufRead,BufNewFile print.pos setlocal textwidth=32 colorcolumn=32
+autocmd BufRead,BufNewFile *.pos,calendar*.md,reciepts.md setlocal textwidth=32 colorcolumn=32
 
 " Custom commands to print to Natum POS58 bleutooth printer
 command! -range=% PosRaw :<line1>,<line2> w ! lp -o raw
@@ -114,7 +127,7 @@ command! -range=% Pos :<line1>,<line2> w !lp
 " Automatic pair {} [] () /**/ 
 inoremap {<cr> {<cr>}<c-o><s-o>
 " inoremap [<cr> [<cr>]<c-o><s-o>
-inoremap [ []<ESC>i
+" inoremap [ []<ESC>i
 inoremap (<cr> (<cr>)<c-o><s-o>
 inoremap /*<cr> /*<cr>*/<c-o><s-o>
 
@@ -176,7 +189,7 @@ inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " copy and paste and from system clipboard
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
 noremap <Leader>y "*yy
@@ -195,9 +208,8 @@ nnoremap <leader>gl :silent! GcLog<CR> :redraw!<CR> :copen<CR>
 
 " for csv plugin in ~/.vim/ftplugin/csv.vim
 " au! BufNewFile,BufRead *.csv setf csv
-" let g:csv_delimiter = ";"
 au! BufNewFile,BufRead *.dat,*.csv setf csv
-let g:csv_delimiter = ","
+let g:csv_delimiter = ";"
 
 " Sort selected column in visual block
 vnoremap <leader>s :sort /\ze\%V/<CR>
@@ -269,7 +281,7 @@ if has("autocmd")
   augroup END
 endif
 
-" for vim-checkbox plugin
+" for vim-checkbox plugin <leader>+tt
 let g:checkbox_states = [' ', 'X']
 
 " Python settings
@@ -329,11 +341,12 @@ function! OpenURLUnderCursor()
     let s:uri = substitute(s:uri, '?', '\\?', '')
     let s:uri = shellescape(s:uri, 1)
     if s:uri != ''
-        silent exec "!firefox -new-tab '".s:uri."'"
+        silent exec "!librewolf -new-tab '".s:uri."'"
         :redraw!
     endif
 endfunction
 nnoremap <Leader><enter> :call OpenURLUnderCursor()<CR>
+" nnoremap <enter> :call OpenURLUnderCursor()<CR>
 
 " LARAVEL (requires vim-blade plugin)
 " blade files syntax highlighting
@@ -356,3 +369,15 @@ nnoremap <leader>rr :!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Co
 nnoremap <leader>rh :!pandoc -s --toc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.html
 
 command Tim2pdf execute "!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/css/invoice.css -o ~/Spools/'%:t'.pdf"
+
+" Print the elia logo on POS58
+command! Elia execute "!lp ~/src/toladaki.gr/orders/includes/olive2.jpg"
+" Print selected range on POS58
+command! -range Apod execute "<line1>,<line2>w !lp -o raw"
+
+" For saved Sessions
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
+
+" vim-rec for recutils
+let g:recutils_no_folding = 1
