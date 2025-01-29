@@ -69,7 +69,7 @@ package https://github.com/jkramer/vim-checkbox.git &
 # package https://github.com/iamcco/markdown-preview.vim.git &
 
 package https://github.com/neoclide/vim-node-rpc.git &
-package https://github.com/iamcco/markdown-preview.nvim.git &
+# package https://github.com/iamcco/markdown-preview.nvim.git &
 # package https://github.com/MrKyr/markdown-preview.vim.git &
 wait
 ) &
