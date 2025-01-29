@@ -36,7 +36,7 @@ set linebreak
 " Theme
 color gruvbox
 set background=dark
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_guisp_fallback = "bg" " Fixing highlight misspelling words for  gruvbox theme
 
 " Theme light
@@ -330,18 +330,20 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'librewolf'
+" let g:mkdp_browser = 'librewolf'
+let g:mkdp_browser = 'qutebrowser'
 
 " Bypass deprecation message for Snipmate
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Open url under cursor by pressing ENTER
+        " silent exec "!librewolf -new-tab '".s:uri."'"
 function! OpenURLUnderCursor()
     let s:uri = expand('<cWORD>')
     let s:uri = substitute(s:uri, '?', '\\?', '')
     let s:uri = shellescape(s:uri, 1)
     if s:uri != ''
-        silent exec "!librewolf -new-tab '".s:uri."'"
+        silent exec "!qutebrowser '".s:uri."'"
         :redraw!
     endif
 endfunction
@@ -360,7 +362,7 @@ let g:blade_custom_directives_pairs = {
       \ }
 
 " Insert current date
-nnoremap <leader>d :r !date '+\%Y-\%m-\%d \%a  \%H:\%M'<cr>
+nnoremap <leader>d :r !date '+\# \%Y-\%m-\%d \%a  \%H:\%M'<cr>
 
 " Create PDF
 nnoremap <leader>rr :!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle="Corali Designs Co." -t  html5  -V margin-top=10 -V margin-left=10 -V margin-right=10 -V margin-bottom=10 --css ~/src/css/github.css -o ~/Spools/'%:t'.pdf
@@ -371,7 +373,7 @@ nnoremap <leader>rh :!pandoc -s --toc % --pdf-engine=wkhtmltopdf --metadata page
 command Tim2pdf execute "!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/css/invoice.css -o ~/Spools/'%:t'.pdf"
 
 " Print the elia logo on POS58
-command! Elia execute "!lp ~/src/toladaki.gr/orders/includes/olive2.jpg"
+command! Elia execute "!lp ~/src/toladaki.gr/orders/templates/olive2.jpg"
 " Print selected range on POS58
 command! -range Apod execute "<line1>,<line2>w !lp -o raw"
 

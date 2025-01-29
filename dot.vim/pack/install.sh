@@ -107,4 +107,9 @@ package https://github.com/justmao945/vim-clang.git &
 package https://github.com/tpope/vim-commentary.git &
 wait
 ) &
+(
+set_group plugins
+# package https://github.com/felipec/notmuch-vim.git &
+wait
+) &
 wait
