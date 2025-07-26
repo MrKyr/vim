@@ -158,13 +158,13 @@ set ignorecase
 set smartcase
 
 " vimwiki/vimwiki
-let g:vimwiki_list = [
-                       \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Cooking', 'syntax': 'markdown', 'ext': '.md'},
-                       \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
+" let g:vimwiki_list = [
+"                        \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
+"                        \{'path': '~/vimwiki/Work', 'syntax': 'markdown', 'ext': '.md'},
+"                        \{'path': '~/vimwiki/Travel', 'syntax': 'markdown', 'ext': '.md'},
+"                        \{'path': '~/vimwiki/Cooking', 'syntax': 'markdown', 'ext': '.md'},
+"                        \{'path': '~/vimwiki/Invoices', 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_global_ext = 0
 
 filetype plugin indent on
 
@@ -181,6 +181,18 @@ set keymap=greek_utf-8
 " Do not enabled by default in Insert mode
 set iminsert=0
 
+" Open my index wiki
+" nnoremap <leader>ww :tabedit ~/notes/index.md<CR>:cd ~/notes<CR>
+nnoremap <leader>ww :e ~/notes/index.md<CR>:cd ~/notes<CR>
+
+" remap 'space' to 'gf' command to open notes files
+nnoremap <space> gf
+
+" Formatting table
+" command Ft execute "!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle='Corali Designs Co.' -t html5 --css ~/src/css/invoice.css -o ~/Spools/'%:t'.pdf"
+" command! Ft execute "!tr -s ' ' | column -t -s '|' -o '|'"
+command! -range Ft execute "<line1>,<line2> !tr -s ' ' | column -t -s '|' -o '|'"
+
 " Set working directory to the current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
@@ -192,9 +204,13 @@ inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 set clipboard^=unnamed,unnamedplus
 " Copy to system clipboard shortcut (leader key "\" and "y") \y
 " the "*yy also copy the current line or selected text
-noremap <Leader>y "*yy
+" noremap <Leader>y "*yy
+vnoremap <Leader>y y:call system("xclip -i", getreg("\""))<CR>
 " Paste from system clipboard shortvut (leader key "\" and "p") \p
-noremap <Leader>p "*p
+" noremap <Leader>p "*p
+
+" To paste from the X clipboard (vanila vim)
+noremap <Leader>p :r !xclip -o -selection clipboard<CR>
 
 " Set `.php` files as `html` but with color and indend like php
 nnoremap <leader>pp :set ft=php<cr>
@@ -375,7 +391,58 @@ command Tim2pdf execute "!pandoc % --pdf-engine=wkhtmltopdf --metadata pagetitle
 " Print the elia logo on POS58
 command! Elia execute "!lp ~/src/toladaki.gr/orders/templates/olive2.jpg"
 " Print selected range on POS58
-command! -range Apod execute "<line1>,<line2>w !lp -o raw"
+" command! -range Apod execute "<line1>,<line2>w !lp -o raw"
+
+" Print the logo and selected range on POS58 in one shot
+command! -range Apod execute "<line1>,<line2>w !lp ~/src/toladaki.gr/orders/templates/olive2.jpg && cat - | lp -o raw"
+
+" Sum/caclulate reciepts.md
+"  1. Open your reciepts.md file in Vim.
+"  2. Press V (Shift+v) to enter visual line mode.
+"  3. Move your cursor up/down to highlight the lines you want to sum.
+"  4. Press : to enter command mode.
+"  5. Type Sum (so the command line reads :'<,'>Sum) and press Enter.
+command! -range Sum execute "<line1>,<line2>w !awk -F'|' '{gsub(/,/, \".\", $3); gsub(/[[:space:]]/, \"\", $3); sum += $3} END {printf \"\\%.2f\", sum}'"
+
+" --- Final, Working Version with Correct Alignment ---
+" How to use: Select ONLY the data rows you want to sum.
+" This version correctly calculates the sum and replaces the value in the
+" target line, preserving all table alignment.
+
+function! FinalSumAndUpdate(line1, line2)
+    " --- 1. Define the target line for the total ---
+    let total_linenum = a:line2 + 2
+
+    " --- 2. Check if the target line exists ---
+    if total_linenum > line('$')
+        echo "Error: Target line " . total_linenum . " does not exist."
+        return
+    endif
+
+    " --- 3. Get data and calculate the sum ---
+    let data_lines_content = getline(a:line1, a:line2)
+    " The awk command formats the output to a width of 8 characters for alignment.
+    let awk_cmd = "awk -F'|' '{gsub(/,/, \".\", $3); gsub(/[[:space:]]/, \"\", $3); sum += $3} END {printf \"%8.2f\", sum}'"
+    
+    " Execute command and remove ONLY the trailing newline, preserving leading spaces.
+    let sum_with_period = system(awk_cmd, join(data_lines_content, "\n"))
+    let sum_with_period_padded = substitute(sum_with_period, '\n$', '', '')
+
+    let sum_with_comma_padded = substitute(sum_with_period_padded, '\.', ',', '')
+
+    " --- 4. Update the target line ---
+    let current_total_line = getline(total_linenum)
+    
+    " This regex replaces the content of the last column with the new, padded value.
+    let new_total_line = substitute(current_total_line, '|[^|]*|$', '|' .. sum_with_comma_padded .. '|', '')
+    
+    call setline(total_linenum, new_total_line)
+
+    call cursor(total_linenum, 1)
+    echo "Sum updated correctly in line " . total_linenum
+endfunction
+
+command! -range SumUpdate call FinalSumAndUpdate(<line1>, <line2>)
 
 " For saved Sessions
 set ssop-=options    " do not store global and local values in a session
@@ -383,3 +450,4 @@ set ssop-=folds      " do not store folds
 
 " vim-rec for recutils
 let g:recutils_no_folding = 1
+
