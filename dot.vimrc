@@ -19,6 +19,11 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+" enable strikethrough view in markdown files
+" ex. ~~this text is strikethrough~~
+let &t_Ts = "\e[9m"
+let &t_Te = "\e[29m"
+
 " vim randomly breaks syntax highlighting FIX
 " autocmd BufEnter * syntax sync fromstart " DOES NOT WORK:
 " Manual Refresh Syntax Color With: <Ctrl+l>
@@ -301,7 +306,7 @@ endif
 let g:checkbox_states = [' ', 'X']
 
 " Python settings
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py,*.ino
 \ set tabstop=4
 \  | set softtabstop=4
 \  | set shiftwidth=4
